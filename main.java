@@ -38,12 +38,12 @@ public class main {
             e.printStackTrace();
           }
         bfs a = new bfs();
-        LinkedList<String> b = a.search(cityList.get("Olympia"), cityList.get("SaltLakeCity"));
+        LinkedList<String> b = a.search(cityList.get("Denver"), cityList.get("Boston"));
         for(String l : b){
             System.out.println(l);
         }
     
-    
+        
     
           
     

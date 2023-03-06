@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.*;
 public class bfs {
     public bfs() {
 
@@ -14,7 +15,7 @@ public class bfs {
         while(!queue.isEmpty()){
             currentNode = queue.remove();
             //visted.put(currentNode.name,new ArrayList<>());
-            for(City neighbor : currentNode.connections){
+            for(City neighbor : currentNode.connections){//List.sort(currentNode.connections,new SortName())){
                 
                 if( !visted.containsKey(neighbor.name)){
                     visted.put(neighbor.name,currentNode.name);
@@ -28,8 +29,8 @@ public class bfs {
         LinkedList<String> path = new LinkedList<>();
         path.add(End.name);
         String lastCity="";
-        path.add(lastCity);
-        while(path.getLast().equals(Start.name)){
+        
+        while(!path.getLast().equals(Start.name)){
             
             lastCity = visted.get(path.getLast());
             path.add(lastCity);
@@ -37,4 +38,11 @@ public class bfs {
         }
         return path;
     }
+}
+class SortName implements Comparator<City>{
+    public int compare(City o1, City o2){
+        return o1.name.compareTo(o2.name);
+
+    }
  }
+ 
