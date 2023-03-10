@@ -45,6 +45,13 @@ public class Search {
         }
         ArrayList<String> inputData=new ArrayList<String>();
         String inputFile =args[0];
+
+        if(inputFile.equals("-")){
+          Scanner scanner = new Scanner(System.in);
+          System.out.println("Enter input file.");
+          inputFile = scanner.nextLine();
+        }
+        
         try{
           
           File myObj = new File(inputFile);
@@ -58,6 +65,7 @@ public class Search {
           System.err.println("File not found: "+ inputFile);
           System.exit(0);
       }
+    
       String testCity="";
       try{
         testCity = inputData.get(0);
@@ -97,8 +105,14 @@ public class Search {
 
 
         Helper help = new Helper();
+        String outputFile = args[1];
+        if(outputFile.equals("-")){
+          Scanner scanner = new Scanner(System.in);
+          System.out.println("Enter output file.");
+          outputFile = scanner.nextLine();
+        }
         try{
-        FileWriter outputWriter = new FileWriter(args[1]);
+        FileWriter outputWriter = new FileWriter(outputFile);
         
         help.printSearch(bfsResults,cityList,"BFS",outputWriter);
         help.printSearch(dfsResults,cityList,"DFS",outputWriter);
