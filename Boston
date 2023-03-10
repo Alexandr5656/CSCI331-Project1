@@ -1,0 +1,12 @@
+Files in Java might be tricky, but it is fun enough!Breadth-First Search Results:
+DenverTopekaJeffersonCityFrankfortColumbusHarrisburgHartfordMontpelierBostonThat took 8 hops to find.
+Total distance = 3832 miles.
+
+Depth-First Search Results:
+DenverLincolnDesMoinesSaintPaulMadisonSpringfieldIndianapolisColumbusHarrisburgHartfordMontpelierBostonThat took 11 hops to find.
+Total distance = 4419 miles.
+
+A* Search Results:
+DenverTopekaJeffersonCityFrankfortColumbusHarrisburgHartfordMontpelierBostonThat took 8 hops to find.
+Total distance = 3832 miles.
+

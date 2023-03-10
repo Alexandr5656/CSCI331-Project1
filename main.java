@@ -3,10 +3,16 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Scanner; // Import the Scanner class to read text files
+import java.io.FileWriter; 
+import java.io.IOException;
 
 
 public class main {
-    public static void main(String []args) {
+    public static void main(String[] args) {
+        if(args.length<2){
+          System.err.println("Usage: java Search inputFile outputFile");
+          System.exit(0);
+        }
         String cityData = "helperFiles/city.dat";
         String edgeData = "helperFiles/edge.dat";
         HashMap<String,City> cityList = new HashMap<>();
@@ -20,8 +26,8 @@ public class main {
             }
             myReader.close();
           } catch (Exception e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
+            System.err.println("File not found: city.dat");
+            System.exit(0);
           }
         try {
             
@@ -34,28 +40,74 @@ public class main {
             }
             myReader.close();
           } catch (Exception e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
+            System.err.println("File not found: edge.dat");
+            System.exit(0);
         }
-        /**BFS
+        ArrayList<String> inputData=new ArrayList<String>();
+        String inputFile =args[0];
+        try{
+          
+          File myObj = new File(inputFile);
+          Scanner myReader = new Scanner(myObj);
+          while (myReader.hasNextLine()) {
+            inputData.add(myReader.nextLine());
+            
+          }
+          myReader.close();
+        } catch (Exception e) {
+          System.err.println("File not found: "+ inputFile);
+          System.exit(0);
+      }
+      String testCity="";
+      try{
+        testCity = inputData.get(0);
+        cityList.get(testCity);
+        testCity = inputData.get(1);
+        cityList.get(testCity);
+      }catch(Exception e){
+        System.err.println("City not found: "+ testCity);
+        System.exit(0);
+      }
+
+
+
+
+      City startCity = cityList.get(inputData.get(0));
+      City endCity = cityList.get(inputData.get(1));
+
+
+
+
+
+
+
+
+
+
         BFS bfs = new BFS();
-        ArrayList<String> bfsResults = bfs.search(cityList.get("Denver"), cityList.get("Boston"));
+        ArrayList<String> bfsResults = bfs.search(startCity, endCity);
 
 
         dfs dfs = new dfs();
-        ArrayList<String> dfsResults = dfs.search(cityList.get("Denver"), cityList.get("Boston"));
-**/
-        ASearch aSearch = new ASearch();
-        ArrayList<String> aSeachResults = aSearch.search(cityList.get("Denver"), cityList.get("Boston"));
+        ArrayList<String> dfsResults = dfs.search(startCity, endCity);;
+
+        AStar aSearch = new AStar();
+        ArrayList<String> aSeachResults = aSearch.search(startCity, endCity);;
         /***                       RESULTS                                                 **/
 
 
         Helper help = new Helper();
-        //help.printSearch(bfsResults,cityList,"BFS");
-        //help.printSearch(dfsResults,cityList,"DFS");
-        help.printSearch(aSeachResults,cityList,"A*");
-
-
+        try{
+        FileWriter outputWriter = new FileWriter(args[1]);
+        
+        help.printSearch(bfsResults,cityList,"BFS",outputWriter);
+        help.printSearch(dfsResults,cityList,"DFS",outputWriter);
+        help.printSearch(aSeachResults,cityList,"A*",outputWriter);
+        outputWriter.close();
+        }catch (IOException e) {
+          System.err.println("An error occurred.");
+          e.printStackTrace();
+        }
 
         }
 
