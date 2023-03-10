@@ -7,7 +7,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 
-public class main {
+public class Search {
     public static void main(String[] args) {
         if(args.length<2){
           System.err.println("Usage: java Search inputFile outputFile");

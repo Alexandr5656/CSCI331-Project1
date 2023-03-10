@@ -4,15 +4,17 @@ import java.io.FileWriter;
 public class Helper {
     public void printSearch(ArrayList<String> path,HashMap<String,City>Map,String type,FileWriter outputWriter) {
         try{
+
+        outputWriter.write("\n");
         switch(type){
             case "BFS":
                 outputWriter.write("Breadth-First Search Results:\n");
                 break;
             case "DFS":
-                outputWriter.write("\nDepth-First Search Results:\n");
+                outputWriter.write("Depth-First Search Results:\n");
                 break;
             case "A*":
-                outputWriter.write("\nA* Search Results:\n");
+                outputWriter.write("A* Search Results:\n");
                 break;
         }
         for(String city : path){
@@ -25,15 +27,13 @@ public class Helper {
             totalDist += calcDist(Map.get(lastCity), Map.get(path.get(i)));
             lastCity = path.get(i);
         }
-        outputWriter.write("Total distance = " + (int) Math.ceil(totalDist) + " miles.\n\n");
+        outputWriter.write("Total distance = " + Math.round(totalDist) + " miles.\n\n");
         
     }catch(Exception e){return;}
     }
     public double calcDist(City city1, City city2){
         try{
-            //outputWriter.write(city1.name+" -> "+city2.name);
             double dist = Math.sqrt( (city1.lattitude-city2.lattitude)*(city1.lattitude-city2.lattitude) + (city1.longitude-city2.longitude)*(city1.longitude-city2.longitude) ) * 100;
-            //outputWriter.write(dist);
             return dist;
 
         }
