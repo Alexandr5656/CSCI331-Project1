@@ -3,7 +3,9 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.*;
 public class AStar {
-    public int SearchDistance = 0;
+
+
+    
     public ArrayList search(City Start, City End){
         Queue<City> queue = new LinkedList<>();
         HashMap<String,String> visted = new HashMap<>();

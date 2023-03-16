@@ -77,9 +77,6 @@ public class Search {
         System.exit(0);
       }
 
-
-
-
       City startCity = cityList.get(inputData.get(0));
       City endCity = cityList.get(inputData.get(1));
 
